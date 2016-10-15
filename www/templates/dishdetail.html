@@ -1,20 +1,25 @@
+<div class="tabs-striped tabs-color-royal">
+  <ul class="tabs">
+      <li ng-class="{active:isSelected(1)}" class="tab-item">
+          <a ng-click="select(1)">Overview</a></li>
+      <li ng-class="{active:isSelected(2)}" class="tab-item">
+          <a ng-click="select(2)">Seasons</a></li>
+  </ul>
+</div>
 <ion-view view-title="Dish Details">
 <ion-nav-buttons side="secondary">
-  <button class="button button-icon icon ion-more" ng-click="openPopover($event)"></button>
+  <button class="button button-icon icon ion-more" ng-click="openPopover($event)" ng-show="checkRoute"></button>
 </ion-nav-buttons>
   <ion-content>
-      <div class="card">
-          <div class="item item-body item-text-wrap">
-               <img class="full-image" ng-src="{{'https://image.tmdb.org/t/p/w500/'+series.seriesDetail.poster_path}}" alt="Uthappizza">
-                <h2>{{series.seriesDetail.name}}
-                 <span style="font-size:75%">{{dish.price | currency}}</span>
-                <span class="badge badge-assertive">{{dish.label}}</span></h2>
-                <p>{{series.seriesDetail.overview}}</p>
-          </div>
-          
-  
-
+    <div class="card">
+      <div class="item item-body item-text-wrap">
+        <img class="full-image" ng-src="{{'https://image.tmdb.org/t/p/w500/'+series.seriesDetail.poster_path}}" alt="poster">
+        <h2>{{series.seriesDetail.name}}
+        <span style="font-size:75%">{{dish.price | currency}}</span>
+        <span class="badge badge-assertive">{{dish.label}}</span></h2>
+        <p>{{series.seriesDetail.overview}}</p>
       </div>
+    </div>
           <div class="row">
             <div class="col col-offset-10">
                    <h4>Customer Comments &nbsp;&nbsp;&nbsp;

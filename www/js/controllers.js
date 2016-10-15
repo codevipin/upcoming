@@ -124,19 +124,6 @@ angular.module('conFusion')
         };
     });
 */
-  $scope.$ionicGoBack = function() {
-
-        if ($state.current.name == 'app.dishdetails') {
-
-            $state.go('app.menu');
-        }
-        if ($state.current.name == 'app.menu') {
-            // console.log($state);
-            // 
-            $state.go('app.home');
-          }
-        }
-
 })
 
 .controller('MenuController', ['$scope','menuFactory', 'favoriteFactory','baseURL','$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast','$localStorage', 'tvService','$state', function($scope, menuFactory,favoriteFactory, baseURL,$ionicListDelegate,$ionicPlatform, $cordovaLocalNotification, $cordovaToast, $localStorage, tvService, $state) {
