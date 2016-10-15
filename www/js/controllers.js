@@ -213,7 +213,7 @@ angular.module('conFusion')
           $scope.select = 1;
           $scope.series = dish;  
           $scope.activeTab = 'overview';          
-
+          console.log(dish);
           $ionicPopover.fromTemplateUrl('templates/dish-detail-popover.html', {
 
                 scope: $scope

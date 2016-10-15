@@ -1,13 +1,4 @@
-<div class="tabs-striped tabs-color-royal">
-  <ul class="tabs">
-      <li ng-class="{active:activeTab == 'overview'}" class="tab-item">
-          <a ng-click="toggleActiveTab('overview')">Overview</a></li>
-      <li ng-class="{active:activeTab == 'seasons'}" class="tab-item">
-          <a ng-click="toggleActiveTab('seasons')">Seasons</a></li>
-  </ul>
-</div>
-
-<ion-view view-title="Dish Details">
+<ion-view view-title="{{series.seriesDetail.name}}">
   <ion-nav-buttons side="secondary">
   <button class="button button-icon icon ion-more" ng-click="openPopover($event)" ng-show="checkRoute"></button>
   </ion-nav-buttons>
@@ -63,4 +54,12 @@
       </div>
     </div> -->
   </ion-content>
+  <div class="tabs-striped tabs-color-royal">
+  <ul class="tabs">
+      <li ng-class="{active:activeTab == 'overview'}" class="tab-item">
+          <a ng-click="toggleActiveTab('overview')">Overview</a></li>
+      <li ng-class="{active:activeTab == 'seasons'}" class="tab-item">
+          <a ng-click="toggleActiveTab('seasons')">Seasons</a></li>
+  </ul>
+</div>
 </ion-view>
