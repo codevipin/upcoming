@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.services'])
 
-.run(function($ionicPlatform,$rootScope, $ionicLoading, $cordovaSplashscreen, $timeout) {
+.run(function($ionicPlatform,$rootScope, $ionicLoading, $cordovaSplashscreen, $timeout, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -34,6 +34,16 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
 
     $rootScope.$on('$stateChangeSuccess', function () {
         console.log('done');
+        console.log($state);
+        if ($state.current.name == 'app.home' || 'app.menu') {
+
+          $rootScope.checkRoute = false;
+        }
+
+        if ($state.current.name == 'app.dishdetails') {
+
+          $rootScope.checkRoute = true;
+        }
         $rootScope.$broadcast('loading:hide');
     });
 

@@ -1,6 +1,6 @@
 angular.module('conFusion')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,$localStorage, $ionicPlatform, $cordovaCamera) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,$localStorage, $ionicPlatform, $cordovaCamera, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -124,10 +124,22 @@ angular.module('conFusion')
         };
     });
 */
+  $scope.$ionicGoBack = function() {
+
+        if ($state.current.name == 'app.dishdetails') {
+
+            $state.go('app.menu');
+        }
+        if ($state.current.name == 'app.menu') {
+            // console.log($state);
+            // 
+            $state.go('app.home');
+          }
+        }
 
 })
 
-.controller('MenuController', ['$scope','menuFactory', 'favoriteFactory','baseURL','$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast','$localStorage', 'tvService', function($scope, menuFactory,favoriteFactory, baseURL,$ionicListDelegate,$ionicPlatform, $cordovaLocalNotification, $cordovaToast, $localStorage, tvService) {
+.controller('MenuController', ['$scope','menuFactory', 'favoriteFactory','baseURL','$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast','$localStorage', 'tvService','$state', function($scope, menuFactory,favoriteFactory, baseURL,$ionicListDelegate,$ionicPlatform, $cordovaLocalNotification, $cordovaToast, $localStorage, tvService, $state) {
             
             $scope.baseURL = baseURL;
             $scope.tab = 1;
@@ -166,6 +178,11 @@ angular.module('conFusion')
         TvService.init();
 
         $scope.topRatedSeries = TvService.get();
+
+        $scope.$ionicGoBack = function() {
+
+          console.log($state);
+        }
 
       }])
 
@@ -210,7 +227,7 @@ angular.module('conFusion')
           $scope.series = dish;            
 
           $ionicPopover.fromTemplateUrl('templates/dish-detail-popover.html', {
-            
+
                 scope: $scope
              }).then(function(popover) {
                 $scope.popover = popover;
