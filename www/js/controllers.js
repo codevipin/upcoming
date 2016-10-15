@@ -210,8 +210,9 @@ angular.module('conFusion')
           $scope.baseURL = baseURL;
           $scope.showDish = false;
           $scope.message="Loading ...";
-
-          $scope.series = dish;            
+          $scope.select = 1;
+          $scope.series = dish;  
+          $scope.activeTab = 'overview';          
 
           $ionicPopover.fromTemplateUrl('templates/dish-detail-popover.html', {
 
@@ -265,7 +266,19 @@ angular.module('conFusion')
 
             $scope.mycomment = {rating:5, comment:"", author:"", date:""};
             $scope.commentForm.hide();
-          };   
+          };  
+
+          $scope.isSelected = function (checkTab) {
+
+                return ($scope.tab === checkTab);
+          }; 
+
+          $scope.toggleActiveTab = function (selectedTab) {
+
+            $scope.activeTab = selectedTab == 'overview'?'overview':'seasons';
+
+            console.log($scope.activeTab);
+          };
         }])
 
         .controller('DishCommentController', ['$scope', 'menuFactory', function($scope,menuFactory) {
@@ -278,7 +291,7 @@ angular.module('conFusion')
                 console.log($scope.mycomment);
                 
                 $scope.dish.comments.push($scope.mycomment);
-        menuFactory.update({id:$scope.dish.id},$scope.dish);
+                menuFactory.update({id:$scope.dish.id},$scope.dish);
                 
                 $scope.commentForm.$setPristine();
                 
