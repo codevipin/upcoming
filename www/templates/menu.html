@@ -12,13 +12,16 @@
   </div>
  <ion-content>
     <ion-list>
-      <div class="card" ng-repeat="series in topRatedSeries" href="#/app/menu/{{series.id}}">
-        <div class="item item-thumbnail-left item-text-wrap">
+      <div class="card" ng-repeat="series in topRatedSeries">
+
+        <div class="item item-thumbnail-left item-text-wrap">   
             <img ng-src="{{'https://image.tmdb.org/t/p/w500/'+series.poster_path}}">
+            <a ng-href="#/app/menu/{{series.id}}"> 
             <h2>{{series.name}}
             <span style="font-size:75%">{{series.vote_average}}</span>
             <span class="badge badge-assertive">{{dish.label}}</span></h2>
             <p>{{series.overview | limitTo: 200}}{{series.overview.length > 200 ? '...' : ''}}</p>
+            </a>
             <!-- <ion-option-button class="button-assertive icon ion-plus-circled"
                 ng-click="addFavorite({{dish.id}})">
             </ion-option-button> -->
