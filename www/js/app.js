@@ -163,4 +163,36 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 
+})
+
+/**
+ * @name errSrc
+ * @author StackOverflow
+ * @description
+ * Sets a alternate source for image in case of error
+ * Source : http://stackoverflow.com/questions/16310298/if-a-ngsrc-path-resolves-to-a-404-is-there-a-way-to-fallback-to-a-default
+ */
+.directive('errSrc', function() {
+
+ return {
+  link: function(scope, element, attrs) {
+
+   scope.$watch(function() {
+
+    return attrs['ngSrc'];
+   }, function (value) {
+
+    if (!value) {
+     element.attr('src', attrs.errSrc);
+    }
+   });
+
+   element.bind('error', function() {
+
+    if (attrs.src != attrs.errSrc) {
+     attrs.$set('src', attrs.errSrc);
+    }
+   });
+  }
+ }
 });
