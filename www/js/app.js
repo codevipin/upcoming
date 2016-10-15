@@ -129,9 +129,21 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
         templateUrl: 'templates/dishdetail.html',
         controller: 'DishDetailController',
          resolve: {
-            dish: ['$stateParams', function($stateParams){
+            dish: ['tvService','$stateParams', function(tvService,$stateParams){
+
+                var TvService = tvService;
+
+                var series = TvService;
+
+                TvService.getSeriesDetails($stateParams.id);
+
+                // $timeout(function() {
+
+                //  console.log(series.seriesDetail)
+                  
+                // }, 2000);
               
-                return $stateParams;
+                return series;
             }]
         }
       }
