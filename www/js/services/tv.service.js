@@ -4,6 +4,8 @@ angular.module('conFusion')
 
 	var topRatedTvSeries = [];
 
+	var storedShowList = [];
+
 	// storeShowList = [];
 
 	var Service = {};
@@ -16,8 +18,6 @@ angular.module('conFusion')
 
 	var StorageService = storageService;
 
-	console.log(showlistService);
-
 	Service.seriesDetail = {};
 
 	Service.seasonDetails = {};
@@ -29,6 +29,28 @@ angular.module('conFusion')
 		Service.sync();
 
 		ShowListService.init();
+	};
+
+	var modifySeriesList = function (originalList, storedList) {
+
+	    for (var i=0; i<originalList.length; i++) {
+
+	    	for (var j=0; j<storedList.length; j++) {
+
+	    		if (storedList[j].id == originalList[i].id) {
+
+	    			originalList[i].inShows = true;
+
+	    			break;
+	    		}
+
+	    		else {
+
+	    			originalList[i].inShows = false;
+	    		}
+	    	}
+	    	topRatedTvSeries.push(originalList[i]);
+	    }
 	};
 
 	Service.sync = function() {
@@ -46,36 +68,9 @@ angular.module('conFusion')
 		    // tvSeries = response.data.results;
 		    tvSeries = response.data; 
 
-		    var getShowList = ShowListService.showList;
+		    storedShowList = StorageService.get('showlist');
 
-		    console.log(tvSeries);
-
-		    for (var i=0; i<tvSeries.length; i++) {
-
-		    	for (var j=0; j<getShowList.length; j++) {
-
-		    		if (getShowList[j].id == tvSeries[i].id) {
-console.log("id matched", getShowList[j].id);
-		    			tvSeries[i].inShows = true;
-		    			break;
-		    		}
-
-		    		else {
-
-		    			tvSeries[i].inShows = false;
-		    		}
-		    	}
-		    	topRatedTvSeries.push(tvSeries[i]);
-
-		    	// if (i<3) {
-
-		    	// 	storeShowList.push(tvSeries[i]);
-		    	// }
-
-		    	// StorageService.set('showlist',storeShowList);
-		    }
-
-		    // Service.getSeriesDetails(19885);
+		    modifySeriesList(tvSeries, storedShowList);
 
 		  }, function errorCallback(response) {
 			
@@ -118,7 +113,8 @@ console.log("id matched", getShowList[j].id);
 		  method: 'GET',
 		  url: apiUrl
 
-		}).then(function successCallback(response) {
+		})
+		.then(function successCallback(response) {
 		    
 		    console.log(response);
 
@@ -127,7 +123,44 @@ console.log("id matched", getShowList[j].id);
 		  }, function errorCallback(response) {
 			
 			console.log("[Error Occured]: ", response);		    		
-		  });
+		});
+	};
+
+	Service.updateTvSeries = function (object) {
+
+		var showlist = StorageService.get('showlist');
+
+		var found = false;
+
+		if (showlist) {
+
+			for (var i=0; i<showlist.length; i++) {
+
+				if (showlist[i].id == object.id) {
+
+					console.log("remove it");
+
+					storedShowList.splice(i,1);
+
+					console.log(storedShowList);
+
+					StorageService.set('showlist', storedShowList);
+
+					var found = true;
+
+					return;
+				} 
+			}	
+		}
+
+		if (!found) {
+
+			console.log("[Object recieved]")
+
+			storedShowList.push(object);
+
+			StorageService.set('showlist', storedShowList);
+		}
 	}
 
 	return Service;

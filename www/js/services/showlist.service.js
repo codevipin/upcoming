@@ -20,5 +20,10 @@ angular.module('conFusion')
 		Service.showList = showlist;
 	};
 
+	Service.getFavShowList = function () {
+
+		console.log("[GET] favourite seasons");
+	};
+
 	return Service;
 });
