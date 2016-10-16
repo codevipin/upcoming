@@ -6,8 +6,6 @@ angular.module('conFusion')
 
 	var storedShowList = [];
 
-	// storeShowList = [];
-
 	var Service = {};
 
 	var baseUrl = 'https://api.themoviedb.org/3/';
@@ -49,11 +47,13 @@ angular.module('conFusion')
 	    			originalList[i].inShows = false;
 	    		}
 	    	}
+
 	    	topRatedTvSeries.push(originalList[i]);
 	    }
 	};
 
 	Service.sync = function() {
+		
 		var apiUrl = baseUrl + 'tv/top_rated?api_key=' + apiKey;
 		
 		$http({
