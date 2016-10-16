@@ -10,18 +10,19 @@
         <div style="float:right;">
           <h2>{{series.seriesDetail.name}}
           <!-- <span style="font-size:75%">{{series.seriesDetail.vote_average}}</span> -->
+            <p style="font-weight:bold">{{series.seriesDetail.in_production?'Continuing':'Ended'}}</p>
             <p style="margin-top:10px;">IMDb: {{series.seriesDetail.vote_average}}/{{series.seriesDetail.vote_count}} votes</p>
             <p style="margin-top:10px;">Episode Run Time: {{series.seriesDetail.episode_run_time[0]}}m</p>
-            <p style="margin-top:10px;">Genre: <span ng-repeat="genre in series.seriesDetail.genres | limitTo:2">{{genre.name}}</span>
-            </p>
-            <p style="margin-top:10px;">Created By:</p>
-            <div ng-repeat="created in series.seriesDetail.created_by" class="item item-avatar">
-              <img style="width:50%"  ng-src="{{'https://image.tmdb.org/t/p/w500/'+created.profile_path}}" alt="{{created.profile_path}}">
-            </div>
           </h2>
         </div>
       </div>
       <p>{{series.seriesDetail.overview}}</p>
+      <p style="margin-top:10px;">Genre: <span ng-repeat="genre in series.seriesDetail.genres">{{genre.name}},</span>
+      </p>
+      <p style="margin-top:10px;">Created By:</p>
+        <div ng-repeat="created in series.seriesDetail.created_by" class="item item-avatar">
+          <img style="width:50%"  ng-src="{{'https://image.tmdb.org/t/p/w500/'+created.profile_path}}" alt="{{created.profile_path}}">
+        </div>
     </div>
 
     <div ng-show="activeTab == 'seasons'">

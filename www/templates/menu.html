@@ -13,19 +13,25 @@
   </div>
  <ion-content>
     <ion-list>
-      <div class="card" ng-repeat="series in topRatedSeries">
+      <div class="list" ng-repeat="series in topRatedSeries">
 
-        <div class="item item-thumbnail-left item-text-wrap">   
-            <img ng-src="{{'https://image.tmdb.org/t/p/w500/'+series.poster_path}}">
-            <a ng-href="#/app/menu/{{series.id}}"> 
+        <div class="item item-thumbnail-left row">   
+            <img style="position:static;" class="col col-25" ng-src="{{'https://image.tmdb.org/t/p/w500/'+series.poster_path}}">
+            <a ng-href="#/app/menu/{{series.id}}" class="col col-50"> 
             <h2>{{series.name}}
             <span style="font-size:75%">{{series.vote_average}}</span>
             <span class="badge badge-assertive">{{dish.label}}</span></h2>
-            <p>{{series.overview | limitTo: 200}}{{series.overview.length > 200 ? '...' : ''}}</p>
+            <p style="white-space:initial !important;line-height:100%;">{{series.overview | limitTo: 50}}{{series.overview.length > 50 ? '...' : ''}}</p>
             </a>
             <!-- <ion-option-button class="button-assertive icon ion-plus-circled"
                 ng-click="addFavorite({{dish.id}})">
             </ion-option-button> -->
+            <label style="align-self:center; margin-left:40px;" class="toggle toggle-assertive col col-25">
+               <input type="checkbox">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
         </div>
       </div>
 
