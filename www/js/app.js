@@ -34,16 +34,6 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
 
     $rootScope.$on('$stateChangeSuccess', function () {
         console.log('done');
-        console.log($state);
-        if ($state.current.name == 'app.home' || 'app.menu') {
-
-          $rootScope.checkRoute = false;
-        }
-
-        if ($state.current.name == 'app.dishdetails') {
-
-          $rootScope.checkRoute = true;
-        }
         $rootScope.$broadcast('loading:hide');
     });
 
@@ -146,12 +136,28 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
                 var series = TvService;
 
                 TvService.getSeriesDetails($stateParams.id);
+              
+                return series;
+            }]
+        }
+      }
+    }
+  })
 
-                // $timeout(function() {
+  .state('app.seasonDetails', {
+    url: '/menu/:id/season/:seasonId',
+    views: {
+      'mainContent': {
+        templateUrl: 'templates/seasonDetails.html',
+        controller: 'seasonEpisodeCtrl',
+         resolve: {
+            dish: ['tvService','$stateParams', function(tvService,$stateParams){
 
-                //  console.log(series.seriesDetail)
-                  
-                // }, 2000);
+                var TvService = tvService;
+
+                var series = TvService;
+
+                TvService.getSeriesEpisodes($stateParams.id, $stateParams.seasonId);
               
                 return series;
             }]

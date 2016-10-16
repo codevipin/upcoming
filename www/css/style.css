@@ -22,13 +22,3 @@ a {
 
 	text-decoration: none;
 }
-
-.bar .back-button.hide, .bar .buttons .hide {
-
-	display: -webkit-box !important;
-}
-
-.bar .back-button.ng-hide, .bar .buttons .ng-hide {
-
-	display: none !important;
-}

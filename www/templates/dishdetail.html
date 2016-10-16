@@ -26,7 +26,7 @@
 
     <div ng-show="activeTab == 'seasons'">
       <div class="list" ng-repeat = "season in series.seriesDetail.seasons.slice().reverse()" >
-        <a class="item item-thumbnail-left" href="#">
+        <a class="item item-thumbnail-left" ng-href="#/app/menu/{{series.seriesDetail.id}}/season/{{season.season_number}}">
           <img ng-src="{{'https://image.tmdb.org/t/p/w500/'+season.poster_path}}" src="poster_path" err-src="/img/coming-soon.png">
           <h2>{{season.season_number != 0?'Season ':''}}{{season.season_number !=0?season.season_number: 'Special Episodes'}}</h2>
           <p>{{season.episode_count}} Episodes</p>

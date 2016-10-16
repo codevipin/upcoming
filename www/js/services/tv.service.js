@@ -12,6 +12,8 @@ angular.module('conFusion')
 
 	Service.seriesDetail = {};
 
+	Service.seasonDetails = {};
+
 	Service.init = function() {
 
 		console.log("Initialising tv service");
@@ -77,7 +79,7 @@ angular.module('conFusion')
 	};
 
 	Service.getSeriesDetails = function(seriesId) {
-console.log("series detail called")
+
 		var apiUrl = baseUrl + 'tv/' + seriesId + '?api_key=' + apiKey;
 
 		$http({
@@ -90,6 +92,27 @@ console.log("series detail called")
 		    console.log(response);
 
 		    Service.seriesDetail = response.data;
+
+		  }, function errorCallback(response) {
+			
+			console.log("[Error Occured]: ", response);		    		
+		  });
+	};
+
+	Service.getSeriesEpisodes = function (seriesId, seasonId) {
+
+		var apiUrl = baseUrl + 'tv/' + seriesId + '/season/' + seasonId + '?api_key=' + apiKey;
+
+		$http({
+
+		  method: 'GET',
+		  url: apiUrl
+
+		}).then(function successCallback(response) {
+		    
+		    console.log(response);
+
+		    Service.seasonDetails = response.data;
 
 		  }, function errorCallback(response) {
 			
