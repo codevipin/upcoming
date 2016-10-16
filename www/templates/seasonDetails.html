@@ -6,7 +6,7 @@
 					<img ng-src="{{'https://image.tmdb.org/t/p/w500/'+episode.still_path}}" err-src="/img/coming-soon.png">
 					<h2>{{episode.name}}</h2>
 					<p>Air Date: {{episode.air_date}} 
-						<span style="float:right"><i class = "icon icon ion-star"></i> {{episode.vote_average}}/{{episode.vote_count}} Votes
+						<span style="float:right"><i class = "icon icon ion-star"></i> {{episode.vote_average | number:2 }}/{{episode.vote_count}} Votes
 						</span>
 					</p>
 				</a>

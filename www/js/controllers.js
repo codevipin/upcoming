@@ -126,52 +126,51 @@ angular.module('conFusion')
 */
 })
 
-.controller('MenuController', ['$scope','menuFactory', 'favoriteFactory','baseURL','$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast','$localStorage', 'tvService','$state', function($scope, menuFactory,favoriteFactory, baseURL,$ionicListDelegate,$ionicPlatform, $cordovaLocalNotification, $cordovaToast, $localStorage, tvService, $state) {
+// .controller('MenuController', ['$scope','menuFactory', 'favoriteFactory','baseURL','$ionicListDelegate', '$ionicPlatform', '$cordovaLocalNotification', '$cordovaToast','$localStorage', 'tvService','$state', function($scope, menuFactory,favoriteFactory, baseURL,$ionicListDelegate,$ionicPlatform, $cordovaLocalNotification, $cordovaToast, $localStorage, tvService, $state) {
             
-            $scope.baseURL = baseURL;
-            $scope.tab = 1;
-            $scope.filtText = '';
-            $scope.showDetails = false;
-            $scope.showMenu = false;
-            $scope.message = "Loading ...";
+//             $scope.baseURL = baseURL;
+//             $scope.tab = 1;
+//             $scope.filtText = '';
+//             $scope.showDetails = false;
+//             $scope.showMenu = false;
+//             $scope.message = "Loading ...";
               
-            $scope.select = function(setTab) {
-                $scope.tab = setTab;
+//             $scope.select = function(setTab) {
+//                 $scope.tab = setTab;
                 
-                if (setTab === 2) {
-                    $scope.filtText = "appetizer";
-                }
-                else if (setTab === 3) {
-                    $scope.filtText = "mains";
-                }
-                else if (setTab === 4) {
-                    $scope.filtText = "dessert";
-                }
-                else {
-                    $scope.filtText = "";
-                }
-            };
+//                 if (setTab === 2) {
+//                     $scope.filtText = "appetizer";
+//                 }
+//                 else if (setTab === 3) {
+//                     $scope.filtText = "mains";
+//                 }
+//                 else if (setTab === 4) {
+//                     $scope.filtText = "dessert";
+//                 }
+//                 else {
+//                     $scope.filtText = "";
+//                 }
+//             };
 
-            $scope.isSelected = function (checkTab) {
-                return ($scope.tab === checkTab);
-            };
+//             $scope.isSelected = function (checkTab) {
+//                 return ($scope.tab === checkTab);
+//             };
     
-            $scope.toggleDetails = function() {
-                $scope.showDetails = !$scope.showDetails;
-            };
+//             $scope.toggleDetails = function() {
+//                 $scope.showDetails = !$scope.showDetails;
+//             };
 
-        var TvService = tvService;
+//             var TvService = tvService;
 
-        TvService.init();
+//             TvService.init();
 
-        $scope.topRatedSeries = TvService.get();
+//             $scope.topRatedSeries = TvService.get();
 
-        $scope.$ionicGoBack = function() {
+//             $scope.$ionicGoBack = function() {
 
-          console.log($state);
-        }
-
-      }])
+//               console.log($state);
+//             }
+// }])
 
         .controller('ContactController', ['$scope', function($scope) {
 

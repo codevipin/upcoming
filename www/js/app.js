@@ -99,7 +99,7 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
       views: {
         'mainContent': {
           templateUrl: 'templates/menu.html',
-          controller: 'MenuController'
+          controller: 'seriesController'
         }
       }
     })

@@ -1,14 +1,22 @@
 angular.module('conFusion')
 
-.service('tvService',['$resource', '$http', function($resource, $http) {
+.service('tvService', function($resource, $http, showlistService, storageService) {
 
 	var topRatedTvSeries = [];
+
+	// storeShowList = [];
 
 	var Service = {};
 
 	var baseUrl = 'https://api.themoviedb.org/3/';
 
 	var apiKey = '73becb75ca2d4bcd41ccbebc981b0e8c';
+
+	var ShowListService = showlistService;
+
+	var StorageService = storageService;
+
+	console.log(showlistService);
 
 	Service.seriesDetail = {};
 
@@ -19,6 +27,8 @@ angular.module('conFusion')
 		console.log("Initialising tv service");
 
 		Service.sync();
+
+		ShowListService.init();
 	};
 
 	Service.sync = function() {
@@ -36,9 +46,33 @@ angular.module('conFusion')
 		    // tvSeries = response.data.results;
 		    tvSeries = response.data; 
 
+		    var getShowList = ShowListService.showList;
+
+		    console.log(tvSeries);
+
 		    for (var i=0; i<tvSeries.length; i++) {
 
+		    	for (var j=0; j<getShowList.length; j++) {
+
+		    		if (getShowList[j].id == tvSeries[i].id) {
+console.log("id matched", getShowList[j].id);
+		    			tvSeries[i].inShows = true;
+		    			break;
+		    		}
+
+		    		else {
+
+		    			tvSeries[i].inShows = false;
+		    		}
+		    	}
 		    	topRatedTvSeries.push(tvSeries[i]);
+
+		    	// if (i<3) {
+
+		    	// 	storeShowList.push(tvSeries[i]);
+		    	// }
+
+		    	// StorageService.set('showlist',storeShowList);
 		    }
 
 		    // Service.getSeriesDetails(19885);
@@ -47,30 +81,6 @@ angular.module('conFusion')
 			
 			console.log("[Error Occured]: ", response);		    		
 		  });
-		  
-		// $resource('http://localhost:3004/results:id')
-		// .query()
-		// .$promise
-		// .then(function successCallback(response) {
-		    
-		//     console.log(response);
-
-		//     // tvSeries = response.data.results;
-		//     tvSeries = response; 
-
-		//     for (var i=0; i<tvSeries.length; i++) {
-
-		//     	topRatedTvSeries.push(tvSeries[i]);
-		//     }
-
-		//   }, function errorCallback(response) {
-			
-		// 	console.log("[Error Occured]: ", response);		    		
-		//   });
-		  
-		
-
-		// console.log(topRatedSeries);
 	};
 
 	Service.get =function() { 
@@ -121,4 +131,4 @@ angular.module('conFusion')
 	}
 
 	return Service;
-}]);
+});
