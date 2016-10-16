@@ -37,30 +37,15 @@
         </a>
       </div>      
     </div>
-    <!-- <div class="row">
-      <div class="col col-offset-10">
-        <h4>Customer Comments &nbsp;&nbsp;&nbsp;
-        <small>Sort by: &nbsp;
-          <input type="text" ng-model="orderText">
-        </small></h4>
-        <ul class="list">
-          <li>
-            <blockquote>
-              <p>{{series.seriesDetail.vote_average}} Stars</p>
-              <p>{{comment.comment}}</p>
-              <footer>{{comment.author}}, {{comment.date | date:'MMM. dd, yyyy'}}</footer>
-            </blockquote>
-          </li>
-        </ul>
-      </div>
-    </div> -->
   </ion-content>
   <div class="tabs-striped tabs-color-royal">
-  <ul class="tabs">
+    <ul class="tabs">
       <li ng-class="{active:activeTab == 'overview'}" class="tab-item">
-          <a ng-click="toggleActiveTab('overview')">Overview</a></li>
+        <a ng-click="toggleActiveTab('overview')">Overview</a>
+      </li>
       <li ng-class="{active:activeTab == 'seasons'}" class="tab-item">
-          <a ng-click="toggleActiveTab('seasons')">Seasons</a></li>
-  </ul>
+        <a ng-click="toggleActiveTab('seasons')">Seasons</a>
+      </li>
+    </ul>
 </div>
 </ion-view>

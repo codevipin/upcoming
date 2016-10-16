@@ -1,9 +1,8 @@
 angular.module('conFusion')
 
-.controller('homeCtrl', function($scope, storageService) {
+.controller('homeCtrl', function($scope, storageService, savedShowList) {
 
 	$scope.message="Loading ...";
 
-	$scope.storedShowsList = storageService.get('showlist');
-	console.log($scope.storedShowsList);
+	$scope.storedShowsList = savedShowList;
 });

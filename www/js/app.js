@@ -11,9 +11,9 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     
-     $timeout(function(){
-                $cordovaSplashscreen.hide();
-      },2000);
+     // $timeout(function(){
+     //            $cordovaSplashscreen.hide();
+     //  },2000);
 
   });
 
@@ -57,14 +57,14 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
     views: {
       'mainContent': {
         templateUrl: 'templates/home.html',
-        controller: 'homeCtrl'
-          //   resolve: {
+        controller: 'homeCtrl',
+            resolve: {
               
-          //     savedShowList: function(storageService){
+              savedShowList: function(storageService){
 
-          //       return storageService.get('showlist');
-          //     }         
-          // }
+                return storageService.get('showlist');
+              }         
+          }
       }
     }
   })
@@ -161,6 +161,25 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
               
                 return series;
             }]
+        }
+      }
+    }
+  })
+
+  .state('app.seachShows', {
+    cache:false,
+    url: '/show/search',
+    views: {
+      'mainContent': {
+        templateUrl: 'templates/searchShow.html',
+        controller: 'searchCtrl',
+        resolve: {
+          showDefaultResult: ['tvService',function(tvService) {
+            var series = tvService;  
+            tvService.getPopularSeason();
+            // console.log(series.getPopularSeries());
+            return series.getPopularSeries();
+          }]
         }
       }
     }

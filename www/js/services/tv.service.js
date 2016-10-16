@@ -6,6 +6,8 @@ angular.module('conFusion')
 
 	var storedShowList = [];
 
+	var popularTvSeries = [];
+
 	var Service = {};
 
 	var baseUrl = 'https://api.themoviedb.org/3/';
@@ -20,6 +22,8 @@ angular.module('conFusion')
 
 	Service.seasonDetails = {};
 
+	Service.popularSeries = {};
+
 	Service.init = function() {
 
 		console.log("Initialising tv service");
@@ -29,7 +33,7 @@ angular.module('conFusion')
 		ShowListService.init();
 	};
 
-	var modifySeriesList = function (originalList, storedList) {
+	var modifySeriesList = function (originalList, storedList, calledFrom) {
 
 	    for (var i=0; i<originalList.length; i++) {
 
@@ -47,19 +51,28 @@ angular.module('conFusion')
 	    			originalList[i].inShows = false;
 	    		}
 	    	}
+		    if (calledFrom == 'topRatedTvSeries') {
 
-	    	topRatedTvSeries.push(originalList[i]);
+		    	topRatedTvSeries.push(originalList[i]);
+		    }
+
+		    if (calledFrom == 'popularTvSeries') {
+
+		    	popularTvSeries.push(originalList[i]);
+		    }
 	    }
+
+	    console.log(popularTvSeries);
 	};
 
 	Service.sync = function() {
 
-		var apiUrl = baseUrl + 'tv/top_rated?api_key=' + apiKey;
+		var apiUrl = baseUrl + 'tv/on_the_air?api_key=' + apiKey;
 		
 		$http({
 
 		  method: 'GET',
-		  url: 'http://localhost:3004/results'
+		  url: apiUrl
 
 		}).then(function successCallback(response) {
 		    
@@ -68,11 +81,11 @@ angular.module('conFusion')
 		    // tvSeries = response.data.results;
 		    tvSeries = response.data; 
 
-		    getShowList = StorageService.get('showlist');
+		    var getShowList = StorageService.get('showlist');
 
 		    if (getShowList) {
 
-		    	modifySeriesList(tvSeries, getShowList);
+		    	modifySeriesList(tvSeries, getShowList, 'topRatedTvSeries');
 		    }
 
 		    else {
@@ -80,7 +93,7 @@ angular.module('conFusion')
 
 		    		id: 420
 		    	};
-		    	modifySeriesList(tvSeries,[dummyObj]);	
+		    	modifySeriesList(tvSeries,[dummyObj], 'topRatedTvSeries');	
 		    }
 
 		  }, function errorCallback(response) {
@@ -135,6 +148,50 @@ angular.module('conFusion')
 		});
 	};
 
+	Service.getPopularSeason = function() {
+
+		var apiUrl = baseUrl + 'tv/popular?api_key=' + apiKey;
+		
+		$http({
+
+		  method: 'GET',
+		  url: apiUrl
+
+		}).then(function successCallback(response) {
+		    
+		    console.log(response);
+
+		    var popularShows = response.data.results;
+
+		    var getShowList = StorageService.get('showlist');
+
+		    if (getShowList) {
+
+		    	modifySeriesList(popularShows, getShowList, 'popularTvSeries');
+		    }
+
+		    else {
+		    	var dummyObj  = {
+
+		    		id: 420
+		    	};
+
+		    	modifySeriesList(tvSeries,[dummyObj], 'popularTvSeries');	
+		    }
+
+		    Service.popularSeries = response.data.results; 
+
+		  }, function errorCallback(response) {
+			
+			console.log("[Error Occured]: ", response);		    		
+		  });
+	};
+
+	Service.getPopularSeries = function () {
+
+		return popularTvSeries;
+	};
+
 	Service.updateTvSeries = function (object) {
 
 		var showlist = StorageService.get('showlist');
@@ -172,9 +229,58 @@ angular.module('conFusion')
 		}
 	};
 
+	Service.getQuerySeries = function (keyword) {
+		
+		var apiUrl = baseUrl + 'search/tv?api_key=' + apiKey + '&language=en-US' + '&query=' + keyword;
+		
+		$http({
+
+		  method: 'GET',
+		  url: apiUrl
+
+		}).then(function successCallback(response) {
+		    
+		    console.log(response);
+
+		    var querySeries = response.data.results;
+
+		    var getShowList = StorageService.get('showlist');
+
+		    if (getShowList) {
+
+		    	if (popularTvSeries.length) {
+
+		    		popularTvSeries.length = 0;
+		    	}
+
+		    	modifySeriesList(querySeries, getShowList, 'popularTvSeries');
+		    }
+
+		    else {
+		    	var dummyObj  = {
+
+		    		id: 420
+		    	};
+
+		    	if (popularTvSeries.length) {
+
+		    		popularTvSeries.length = 0;
+		    	}
+		    	modifySeriesList(tvSeries,[dummyObj], 'popularTvSeries');	
+		    }
+
+		    // Service.popularSeries = response.data.results; 
+
+		  }, function errorCallback(response) {
+			
+			console.log("[Error Occured]: ", response);		    		
+		  });
+	};
+
 	Service.reset = function () {
 
-		topRatedTvSeries.length = 0;	
+		topRatedTvSeries.length = 0;
+		popularTvSeries.length = 0;	
 	};
 
 	return Service;
