@@ -54,17 +54,13 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
     views: {
       'mainContent': {
         templateUrl: 'templates/home.html',
-        controller: 'IndexController',
+        controller: 'homeCtrl',
             resolve: {
-              promotion:  ['promotionFactory', function(promotionFactory){
-                return promotionFactory.get({id:0});
-                              }],
-              leader: ['corporateFactory',function(corporateFactory){
-                return corporateFactory.get({id:3});
-                        }],
-               dish: ['menuFactory',function(menuFactory){
-                return menuFactory.get({id:0});
-               }]         
+              
+              savedShowList: function(storageService){
+                console.log(storageService.get('showlist'));
+                return storageService.get('showlist');
+              }         
           }
       }
     }

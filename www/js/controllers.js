@@ -300,17 +300,17 @@ angular.module('conFusion')
 
         // implement the IndexController and About Controller here
 
-        .controller('IndexController', ['$scope', 'dish','promotion','leader','baseURL', function($scope, dish, promotion, leader, baseURL) {
+        // .controller('IndexController', ['$scope', 'dish','promotion','leader','baseURL', function($scope, dish, promotion, leader, baseURL) {
                                         
-                        $scope.baseURL = baseURL;
-                        $scope.leader = leader;
-                        $scope.showDish = false;
-                        $scope.message="Loading ...";
-                        $scope.dish = dish;
+        //                 $scope.baseURL = baseURL;
+        //                 $scope.leader = leader;
+        //                 $scope.showDish = false;
+        //                 $scope.message="Loading ...";
+        //                 $scope.dish = dish;
                         
-                        $scope.promotion = promotion;
+        //                 $scope.promotion = promotion;
             
-                    }])
+        //             }])
 
         .controller('AboutController', ['$scope', 'leaders','baseURL', function($scope, leaders,baseURL) {
             
