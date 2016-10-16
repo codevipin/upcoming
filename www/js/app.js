@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.services'])
 
-.run(function($ionicPlatform,$rootScope, $ionicLoading, $cordovaSplashscreen, $timeout, $state) {
+.run(function($ionicPlatform,$rootScope, $ionicLoading, $cordovaSplashscreen, $timeout, $state, tvService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -30,6 +30,8 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
     $rootScope.$on('$stateChangeStart', function () {
         console.log('Loading ...');
         $rootScope.$broadcast('loading:show');
+
+        tvService.reset();
     });
 
     $rootScope.$on('$stateChangeSuccess', function () {
@@ -50,18 +52,19 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
   })
 
   .state('app.home', {
+    cache: false,
     url: '/home',
     views: {
       'mainContent': {
         templateUrl: 'templates/home.html',
-        controller: 'homeCtrl',
-            resolve: {
+        controller: 'homeCtrl'
+          //   resolve: {
               
-              savedShowList: function(storageService){
-                console.log(storageService.get('showlist'));
-                return storageService.get('showlist');
-              }         
-          }
+          //     savedShowList: function(storageService){
+
+          //       return storageService.get('showlist');
+          //     }         
+          // }
       }
     }
   })
@@ -91,6 +94,7 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
     })
 
     .state('app.menu', {
+      cache:false,
       url: '/menu',
       views: {
         'mainContent': {

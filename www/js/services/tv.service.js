@@ -53,7 +53,7 @@ angular.module('conFusion')
 	};
 
 	Service.sync = function() {
-		
+
 		var apiUrl = baseUrl + 'tv/top_rated?api_key=' + apiKey;
 		
 		$http({
@@ -68,9 +68,20 @@ angular.module('conFusion')
 		    // tvSeries = response.data.results;
 		    tvSeries = response.data; 
 
-		    storedShowList = StorageService.get('showlist');
+		    getShowList = StorageService.get('showlist');
 
-		    modifySeriesList(tvSeries, storedShowList);
+		    if (getShowList) {
+
+		    	modifySeriesList(tvSeries, getShowList);
+		    }
+
+		    else {
+		    	var dummyObj  = {
+
+		    		id: 420
+		    	};
+		    	modifySeriesList(tvSeries,[dummyObj]);	
+		    }
 
 		  }, function errorCallback(response) {
 			
@@ -159,7 +170,12 @@ angular.module('conFusion')
 
 			StorageService.set('showlist', storedShowList);
 		}
-	}
+	};
+
+	Service.reset = function () {
+
+		topRatedTvSeries.length = 0;	
+	};
 
 	return Service;
 });

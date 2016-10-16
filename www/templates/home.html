@@ -1,17 +1,10 @@
 <ion-view view-title="Top Rated Seasons">
-  <div class="tabs-striped tabs-color-royal">
-    <ul class="tabs">
-      <li ng-class="{active:isSelected(1)}" class="tab-item">
-        <a ng-click="select(1)">Your Shows</a></li>
-      <li ng-class="{active:isSelected(2)}" class="tab-item">
-        <a ng-click="select(2)">Now</a></li>
-      <li ng-class="{active:isSelected(3)}" class="tab-item">
-        <a ng-click="select(3)">Upcoming</a></li>
-      <li ng-class="{active:isSelected(4)}" class="tab-item">
-        <a  ng-click="select(4)">Add More</a></li>
-    </ul>
-  </div>
- <ion-content>
+  <ion-nav-buttons side="secondary">
+    <div class="buttons">
+      <button class="button button-icon icon ion-ios-search-strong" ng-click="toggleDelete()"></button>
+    </div>
+  </ion-nav-buttons>
+  <ion-content>
     <ion-list>
       <div class="list" ng-repeat="series in storedShowsList">
         <div class="item item-thumbnail-left row">   
@@ -32,4 +25,20 @@
       </div>
     </ion-list>
   </ion-content>
+
+  <!-- <button class="button button-float">
+    <i class="icon ion-plus"></i>
+  </button> -->
+  <div class="tabs-striped tabs-color-royal">
+    <ul class="tabs">
+      <li ng-class="{active:isSelected(1)}" class="tab-item">
+        <a ng-click="select(1)">Your Shows</a></li>
+      <li ng-class="{active:isSelected(2)}" class="tab-item">
+        <a ng-click="select(2)">Now</a></li>
+      <li ng-class="{active:isSelected(3)}" class="tab-item">
+        <a ng-click="select(3)">Upcoming</a></li>
+      <li ng-class="{active:isSelected(4)}" class="tab-item">
+        <a  ng-click="select(4)">Add More</a></li>
+    </ul>
+  </div>
 </ion-view>  
