@@ -93,8 +93,6 @@ angular.module('conFusion')
 		  url: apiUrl
 
 		}).then(function successCallback(response) {
-		    
-		    console.log(response);
 
 		    Service.seriesDetail = response.data;
 
