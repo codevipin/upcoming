@@ -67,7 +67,7 @@ angular.module('conFusion')
 
 	Service.sync = function() {
 
-		var apiUrl = baseUrl + 'tv/on_the_air?api_key=' + apiKey;
+		var apiUrl = baseUrl + 'tv/top_rated?api_key=' + apiKey;
 		
 		$http({
 
@@ -78,8 +78,8 @@ angular.module('conFusion')
 		    
 		    console.log(response);
 
-		    // tvSeries = response.data.results;
-		    tvSeries = response.data; 
+		    tvSeries = response.data.results;
+		    // tvSeries = response.data; 
 
 		    var getShowList = StorageService.get('showlist');
 

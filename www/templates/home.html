@@ -39,7 +39,11 @@
       <li ng-class="{active:isSelected(3)}" class="tab-item">
         <a ng-click="select(3)">Upcoming</a></li>
       <li ng-class="{active:isSelected(4)}" class="tab-item">
-        <a  ui-sref="app.seachShows">Add More</a></li>
+        <a  ui-sref="app.seachShows">
+         <div class="buttons buttons-right"><span class="right-buttons"><button class=" icon ion-android-add-circle" style="color:cornflowerblue"></button></span>
+        </a>
+        </div>
+      </li>
     </ul>
   </div>
 </ion-view>  
