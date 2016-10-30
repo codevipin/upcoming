@@ -1,0 +1,13 @@
+<ion-view view-title="Schedule">
+	<ion-content>
+		<div class="list card">
+			<div class="item item-avatar" ng-repeat="show in schedule">
+				<img ng-src="{{show.show.image.medium}}" err-src="img/ionic.png">
+				<h2>{{show.show.name}}</h2>
+				<!-- <p>November 05, 1955</p> -->
+				<p>{{show.airdate }} {{show.airtime}}</p>
+				<p>Type: {{show.show.type}}</p>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

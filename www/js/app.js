@@ -178,9 +178,19 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
             var series = tvService;  
             tvService.getPopularSeason();
             // console.log(series.getPopularSeries());
-            return series.getPopularSeries();
+            return tvService;
           }]
         }
+      }
+    }
+  })
+
+  .state('app.schedule', {
+    url: '/schedule',
+    views: {
+      'mainContent': {
+        templateUrl: 'templates/schedule.html',
+        controller: 'scheduleCtrl'
       }
     }
   });

@@ -68,6 +68,8 @@ angular.module('conFusion')
 	Service.sync = function() {
 
 		var apiUrl = baseUrl + 'tv/top_rated?api_key=' + apiKey;
+
+		Service.getTrendingShow();
 		
 		$http({
 
@@ -274,7 +276,64 @@ angular.module('conFusion')
 		  }, function errorCallback(response) {
 			
 			console.log("[Error Occured]: ", response);		    		
-		  });
+		});
+	};
+
+	Service.getTrendingShow = function(){
+		var apiKeyTrakt = '779d9f458727ced350ab842cbfb6019f4ac4653186db6543acdb2f950e3d0a30';
+		var apiUrl = 'https://api.trakt.tv/shows/trending';
+
+		$http({
+
+		  method: 'GET',
+		  url: apiUrl,
+
+		  headers : {
+
+		  	'Content-Type' 		: 'application/json',
+		  	'trakt-api-version' : 2,
+		  	'trakt-api-key'		: apiKeyTrakt
+		  }
+
+		}).then(function successCallback(response) {
+		    
+		    console.log(response);
+
+		    // var querySeries = response.data.results;
+
+		    // var getShowList = StorageService.get('showlist');
+
+		    // if (getShowList) {
+
+		    // 	if (popularTvSeries.length) {
+
+		    // 		popularTvSeries.length = 0;
+		    // 	}
+
+		    // 	modifySeriesList(querySeries, getShowList, 'popularTvSeries');
+		    // }
+
+		    // else {
+		    // 	var dummyObj  = {
+
+		    // 		id: 420
+		    // 	};
+
+		    // 	if (popularTvSeries.length) {
+
+		    // 		popularTvSeries.length = 0;
+		    // 	}
+		    // 	modifySeriesList(tvSeries,[dummyObj], 'popularTvSeries');	
+		    // }
+
+		    // Service.popularSeries = response.data.results; 
+
+		  }, function errorCallback(response) {
+			
+			console.log("[Error Occured]: ", response);		    		
+		});
+
+
 	};
 
 	Service.reset = function () {
