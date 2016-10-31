@@ -1,12 +1,10 @@
 angular.module('conFusion')
 
-.service('scheduleService', function($http) {
+.service('scheduleService', function($http, $rootScope) {
 
 	var Service = {};
 
 	Service.getSchedule = function(countryCode) {
-
-		console.log("Fetching the TV Schedule");
 
 		var scheduleAPI = 'http://api.tvmaze.com/schedule?country=' + countryCode;
 		var promise = $http({
@@ -41,6 +39,8 @@ angular.module('conFusion')
 	};
 
 	Service.getIndiaChannelSchedule = function (data) {
+
+		$rootScope.$broadcast('loading:show');
 
 		var apiBaseUrl = 'http://indian-tv-schedule-api.appspot.com/schedule';
 

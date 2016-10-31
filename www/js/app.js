@@ -199,6 +199,16 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
         controller: 'scheduleCtrl'
       }
     }
+  })
+
+  .state('app.channelDetail', {
+    url: '/channeldetail',
+    views: {
+      'mainContent': {
+        templateUrl: 'templates/scheduleDetail.html',
+        controller: 'scheduleCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

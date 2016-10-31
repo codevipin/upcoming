@@ -1,6 +1,6 @@
 angular.module('conFusion')
 
-.controller('scheduleCtrl', function($scope, scheduleService, storageService, $ionicModal, $timeout) {
+.controller('scheduleCtrl', function($scope, scheduleService, storageService, $ionicModal, $timeout, $state, $rootScope) {
 
 	var ScheduleService = scheduleService;
 
@@ -30,9 +30,9 @@ angular.module('conFusion')
 	var getCountryCode = function() {
 
 		ScheduleService.getCountryCode()
+		
 		.success( function(response) {
 
-			console.log(response);
 			$scope.countryList = response;
 		})
 		.error (function(response) {
@@ -56,11 +56,19 @@ angular.module('conFusion')
 		});
 	};
 
+	var changeTextFormat = function(string) {
+
+		var changedText = string.toLowerCase().split(" ").join("-");
+
+		return changedText;
+	};
+
 	$scope.getChannelSchedule = function(channel) {
 
+		var formattedChannel = changeTextFormat(channel);
 		var data = {
 
-			channel : 'cinema-tv',
+			channel : formattedChannel,
 			date: '2016-10-31',
 			details : 'True'
 		}
@@ -68,9 +76,16 @@ angular.module('conFusion')
 		ScheduleService.getIndiaChannelSchedule(data)
 		.success(function(response) {
 
-			console.log(response);
+			$rootScope.$broadcast('loading:hide');
+
+			$rootScope.schedule = response;
+			$rootScope.endit = "vipin";
+
+			$state.go('app.channelDetail');
 		})
 		.error (function(response) {
+
+			$rootScope.$broadcast('loading:hide');
 
 			console.log(response);	
 		});
@@ -81,8 +96,6 @@ angular.module('conFusion')
 		ScheduleService.getSchedule(countryCode)
 
 		.success( function(response) {
-
-			console.log(response);
 
 			$scope.schedule = response;
 		})
@@ -102,7 +115,7 @@ angular.module('conFusion')
 
 			getIndiaTvList();
 
-			$scope.getChannelSchedule();
+			// $scope.getChannelSchedule();
 		}
 
 		else {

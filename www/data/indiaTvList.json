@@ -1,8 +1,5 @@
 [
 	{
-	"name" : "SET"
-	},
-	{
 	"name" : "Star Gold"
 	},
 	{
@@ -27,9 +24,6 @@
 	"name" : "Zee Marathi"
 	},
 	{
-	"name" : "Star Jalsha"
-	},
-	{
 	"name" : "Maa TV"
 	},
 	{
@@ -51,13 +45,10 @@
 	"name" : "Star Utsav"
 	},
 	{
-	"name" : "Vijay TV"
-	},
-	{
 	"name" : "Zee Anmol"
 	},
 	{
-	"name" : "And Pictures"
+	"name" : "& Pictures"
 	},
 	{
 	"name" : "KTV"
@@ -72,7 +63,7 @@
 	"name" : "Zee Bangla"
 	},
 	{
-	"name" : "Udaya TV"
+	"name" : "Udaya Movies"
 	},
 	{
 	"name" : "UTV Action"
@@ -126,7 +117,7 @@
 	"name" : "India TV"
 	},
 	{
-	"name" : "Ten 1"
+	"name" : "Ten Sports"
 	},
 	{
 	"name" : "Discovery Channel"
@@ -162,16 +153,10 @@
 	"name" : "MTV"
 	},
 	{
-	"name" : "ABP Majha"
-	},
-	{
 	"name" : "National Geographic Channel"
 	},
 	{
 	"name" : "B4U Music"
-	},
-	{
-	"name" : "Sun Music"
 	},
 	{
 	"name" : "9X Jalwa"
@@ -316,15 +301,11 @@
 
 	},
 	{
-	"name" : "Sirippoli"
+	"name" : "Kalaignar Sirippoli"
 
 	},
 	{
 	"name" : "Discovery Kids"
-
-	},
-	{
-	"name" : "E24"
 
 	},
 	{
@@ -340,7 +321,7 @@
 
 	},
 	{
-	"name" : "Star Suvarna Plus"
+	"name" : "Suvarna Plus"
 
 	},
 	{
@@ -348,7 +329,7 @@
 
 	},
 	{
-	"name" : "TV9 Marathi"
+	"name" : "TV9 Kannada"
 
 	},
 	{
@@ -403,14 +384,7 @@
 	"name" : "Nat Geo Wild"
 
 	},
-	{
-	"name" : "Puthiya Thalaimurai"
 
-	},
-	{
-	"name" : "Sarthak TV"
-
-	},
 	{
 	"name" : "Udaya Music"
 
@@ -441,10 +415,6 @@
 	},
 	{
 	"name" : "Star Sports 2"
-
-	},
-	{
-	"name" : "Sun News"
 
 	},
 	{
@@ -480,7 +450,7 @@
 
 	},
 	{
-	"name" : "Maiboli"
+	"name" : "Maiboli TV"
 
 	},
 	{
@@ -984,7 +954,7 @@
 
 	},
 	{
-	"name" : "Star Plus HD"
+	"name" : "Star Plus"
 
 	},
 	{
@@ -1552,7 +1522,7 @@
 
 	},
 	{
-	"name" : "Baby TV HD"
+	"name" : "Baby TV"
 
 	},
 	{

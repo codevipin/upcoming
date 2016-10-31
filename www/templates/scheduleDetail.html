@@ -1,0 +1,14 @@
+<ion-view view-title="Details">
+	<ion-content>
+		<div class="list card">
+
+			<div class="item item-avatar" ng-repeat="detail in schedule.shows">
+				<img ng-src="{{detail.showThumb}}" err-src="img/ionic.png">
+				<h2>{{detail.showTitle}}</h2>
+				<!-- <p>November 05, 1955</p> -->
+				<p>{{schedule.date }} {{detail.showTime}}</p>
+				<!-- <p>Type: {{show.show.type}}</p> -->
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

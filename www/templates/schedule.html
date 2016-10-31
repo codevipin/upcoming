@@ -22,7 +22,7 @@
 		<div class="list card" ng-if="country.code == IN">
 			<div class="item item-avatar" ng-repeat="channel in tvList | filter: channel">
 				
-				<h2>{{channel.name}}</h2>		
+				<h2 ng-click="getChannelSchedule(channel.name)">{{channel.name}}</h2>		
 		</div>
 	</ion-content>
 </ion-view>
