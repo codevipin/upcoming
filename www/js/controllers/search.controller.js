@@ -5,7 +5,7 @@ angular.module('conFusion')
 	var TvService = tvService;
 
 	$scope.popularShow = showDefaultResult;
-
+	console.log(showDefaultResult);
 	$scope.toggleSeriesStatus = function(data) {
 
 		TvService.updateTvSeries(data);
@@ -15,7 +15,10 @@ angular.module('conFusion')
 
 		TvService.getQuerySeries(keyword);
 		console.log(keyword);
-		$scope.popularShow = TvService.getPopularSeries();
+		$scope.popularShow = {
+
+			popularSeries : TvService.getPopularSeries()
+		}
 		console.log($scope.popularShow);	
 		// TvService.reset();
 	};
