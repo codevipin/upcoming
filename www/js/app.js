@@ -41,7 +41,13 @@ angular.module('conFusion', ['ionic','ngCordova', 'ngResource','conFusion.servic
 
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+   //Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
+
+     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
   $stateProvider
 
   .state('app', {

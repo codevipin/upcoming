@@ -41,6 +41,41 @@ angular.module('conFusion')
 		});
 	};
 
+	// [GET] List of channel in india
+	var getIndiaTvList = function() {
+
+		ScheduleService.getIndiaTvList()
+		.success( function(response) {
+
+			console.log(response);
+			$scope.tvList = response;
+		})
+		.error (function(response) {
+
+			console.log(response);
+		});
+	};
+
+	$scope.getChannelSchedule = function(channel) {
+
+		var data = {
+
+			channel : 'cinema-tv',
+			date: '2016-10-31',
+			details : 'True'
+		}
+
+		ScheduleService.getIndiaChannelSchedule(data)
+		.success(function(response) {
+
+			console.log(response);
+		})
+		.error (function(response) {
+
+			console.log(response);	
+		});
+	};
+
 	var getSchedule = function(countryCode) {
 
 		ScheduleService.getSchedule(countryCode)
@@ -59,8 +94,21 @@ angular.module('conFusion')
 
 	if (countryCode) {
 
-		console.log("Cannot find country code");
-		getSchedule(countryCode);
+		console.log("Found country code");
+
+		if (countryCode == 'IN') {
+
+			console.log("India Selected");
+
+			getIndiaTvList();
+
+			$scope.getChannelSchedule();
+		}
+
+		else {
+
+			getSchedule(countryCode);
+		}
 	}
 
 	else {
@@ -76,18 +124,20 @@ angular.module('conFusion')
 
 		storageService.set('countryCode', $scope.country.code);
 
-		// $scope.countryCode = $scope.country.code;
+		$scope.countryCode = $scope.country.code;
 
-		getSchedule($scope.country.code);
+		if ($scope.country.code == 'IN') {
+
+			console.log("India Selected");
+
+			getIndiaTvList();
+		}
+
+		else {
+
+			getSchedule($scope.country.code);	
+		}
 
 		$scope.modal.hide();
 	};
-
-
-	// $timeout(function() {
-
-	// 	$scope.modal.show();
-	// });
-
-
 });
