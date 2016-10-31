@@ -1,0 +1,49 @@
+<ion-view view-title="Saved Shows">
+  <ion-nav-buttons side="secondary">
+    <div class="buttons">
+      <button class="button button-icon icon ion-ios-search-strong" ui-sref="app.seachShows">
+      </button>
+    </div>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <div class="list" ng-repeat="series in storedShowsList">
+        <div class="item item-thumbnail-left row">   
+          <img style="position:static;" class="col col-25" ng-src="{{'https://image.tmdb.org/t/p/w500/'+series.poster_path}}" err-src="/img/coming-soon.png">
+          <a ng-href="#/app/menu/{{series.id}}" class="col col-50"> 
+            <h2>{{series.name}}
+            <span style="font-size:75%">{{series.vote_average}}</span>
+            <span class="badge badge-assertive">{{dish.label}}</span></h2>
+            <p style="white-space:initial !important;line-height:100%;">{{series.overview | limitTo: 50}}{{series.overview.length > 50 ? '...' : ''}}</p>
+          </a>
+          <!-- <label style="align-self:center; margin-left:40px;" class="toggle toggle-assertive col col-25">
+             <input ng-model="series.inShows" ng-click= "toggleSeriesStatus(series)" type="checkbox">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+          </label> -->
+        </div>
+      </div>
+    </ion-list>
+  </ion-content>
+
+  <!-- <button class="button button-float">
+    <i class="icon ion-plus"></i>
+  </button> -->
+  <div class="tabs-striped tabs-color-royal">
+    <ul class="tabs">
+      <li ng-class="{active:isSelected(1)}" class="tab-item">
+        <a ng-click="select(1)">Your Shows</a></li>
+      <li ng-class="{active:isSelected(2)}" class="tab-item">
+        <a ng-click="select(2)">Now</a></li>
+      <li ng-class="{active:isSelected(3)}" class="tab-item">
+        <a ng-click="select(3)">Upcoming</a></li>
+      <li ng-class="{active:isSelected(4)}" class="tab-item">
+        <a  ui-sref="app.seachShows">
+         <div class="buttons buttons-right"><span class="right-buttons"><button class=" icon ion-android-add-circle" style="color:cornflowerblue"></button></span>
+        </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ion-view>  

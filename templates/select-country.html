@@ -1,0 +1,20 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Select Country</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeCountryModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Country
+        </div>
+        <select ng-model="country.code">
+          <option ng-repeat="country in countryList" value="{{country.code}}">{{country.name}}</option>
+        </select>
+      </label>
+    </div>
+  </ion-content>
+</ion-modal-view>

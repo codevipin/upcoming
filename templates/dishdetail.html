@@ -1,0 +1,51 @@
+<ion-view view-title="{{series.seriesDetail.name}}">
+  <ion-nav-buttons side="secondary">
+  <button class="button button-icon icon ion-more" ng-click="openPopover($event)" ng-show="checkRoute"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="card" ng-show="activeTab == 'overview'">
+      <div class="item item-body item-text-wrap">
+        <img style="width:50%" ng-src="{{'https://image.tmdb.org/t/p/w500/'+series.seriesDetail.poster_path}}" alt="poster">
+
+        <div style="float:right;">
+          <h2>{{series.seriesDetail.name}}
+          <!-- <span style="font-size:75%">{{series.seriesDetail.vote_average}}</span> -->
+            <p style="font-weight:bold">{{series.seriesDetail.in_production?'Continuing':'Ended'}}</p>
+            <p style="margin-top:10px;">IMDb: {{series.seriesDetail.vote_average}}/{{series.seriesDetail.vote_count}} votes</p>
+            <p style="margin-top:10px;">Episode Run Time: {{series.seriesDetail.episode_run_time[0]}}m</p>
+          </h2>
+        </div>
+      </div>
+      <p>{{series.seriesDetail.overview}}</p>
+      <p style="margin-top:10px;">Genre: <span ng-repeat="genre in series.seriesDetail.genres">{{genre.name}},</span>
+      </p>
+      <p style="margin-top:10px;">Created By:</p>
+        <div ng-repeat="created in series.seriesDetail.created_by" class="item item-avatar">
+          <img style="width:50%"  ng-src="{{'https://image.tmdb.org/t/p/w500/'+created.profile_path}}" alt="{{created.profile_path}}">
+        </div>
+    </div>
+
+    <div ng-show="activeTab == 'seasons'">
+      <div class="list" ng-repeat = "season in series.seriesDetail.seasons.slice().reverse()" >
+        <a class="item item-thumbnail-left" ng-href="#/app/menu/{{series.seriesDetail.id}}/season/{{season.season_number}}">
+          <img ng-src="{{'https://image.tmdb.org/t/p/w500/'+season.poster_path}}" src="poster_path" err-src="/img/coming-soon.png">
+          <h2>{{season.season_number != 0?'Season ':''}}{{season.season_number !=0?season.season_number: 'Special Episodes'}}</h2>
+          <p>{{season.episode_count}} Episodes</p>
+          <small>
+            <p>Air Date: {{season.air_date}}</p>
+          </small>
+        </a>
+      </div>      
+    </div>
+  </ion-content>
+  <div class="tabs-striped tabs-color-royal">
+    <ul class="tabs">
+      <li ng-class="{active:activeTab == 'overview'}" class="tab-item">
+        <a ng-click="toggleActiveTab('overview')">Overview</a>
+      </li>
+      <li ng-class="{active:activeTab == 'seasons'}" class="tab-item">
+        <a ng-click="toggleActiveTab('seasons')">Seasons</a>
+      </li>
+    </ul>
+</div>
+</ion-view>

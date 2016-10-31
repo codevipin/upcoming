@@ -1,0 +1,16 @@
+<ion-view view-title="{{details.seriesDetail.name}}/S {{details.seasonDetails.season_number}}">
+	<ion-content>
+		<div>
+			<div class="list" ng-repeat="episode in details.seasonDetails.episodes">
+				<a class="item item-avatar" href="#">
+					<img ng-src="{{'https://image.tmdb.org/t/p/w500/'+episode.still_path}}" err-src="/img/coming-soon.png">
+					<h2>{{episode.name}}</h2>
+					<p>Air Date: {{episode.air_date}} 
+						<span style="float:right"><i class = "icon icon ion-star"></i> {{episode.vote_average | number:2 }}/{{episode.vote_count}} Votes
+						</span>
+					</p>
+				</a>
+			</div>	
+		</div>
+	</ion-content>
+</ion-view>
